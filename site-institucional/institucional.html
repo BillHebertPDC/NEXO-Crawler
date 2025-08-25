@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta nome="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="institucional.css">
+    <title>Nexo</title>
+</head>
+<body>
+    <div id="carregamento-animacao">
+        <div id="spinner"></div>
+    </div>
+
+    <div id="cabecalho">
+        <div class="cabecalho-container">
+            <div class="logo"><img id="logo" src="imgs/Nexo-Logo.png" alt="Nexo-Logo"></div>
+            <div class="cabecalho-links" id="cabecalhoLinks">
+                <a href="#recursos">Recursos</a>
+                <a href="#calculadora">Calculadora ROI</a>
+                <a href="#clientes">Clientes</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#contato">Contato</a>
+                <a href="#" class="botao-principal">Cadastro</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="inicio">
+        <div class="inicio-container">
+            <div class="inicio-text">
+                <h1>Transforme seus Tótens em Máquinas de Alta Performance</h1>
+                <p>Plataforma inteligente de monitoramento que previne falhas, reduz custos e maximiza o uptime dos seus equipamentos de autoatendimento.</p>
+                <div class="inicio-botao">
+                    <a href="#" class="botao-principal">Casdratro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="recursos" id="recursos">
+        <div class="recursos-cabecalho">
+            <div class="recursos-label">RECURSOS</div>
+            <h2 class="recursos-titulo">Tecnologia de Ponta para Gestão Inteligente</h2>
+            <p class="recursos-descricao">Ferramentas avançadas que transformam dados em decisões estratégicas para seu negócio.</p>
+        </div>
+        <div class="recusos-container">
+            <div class="recurso-card">
+                <div class="recurso-icon">📊</div>
+                <h3 class="recurso-titulo">Monitoramento 24/7</h3>
+                <p class="recurso-descricao">Acompanhe CPU, memória, disco e rede em tempo real. Receba alertas instantâneos sobre qualquer anomalia antes que se torne um problema.</p>
+            </div>
+            <div class="recurso-card">
+                <div class="recurso-icon">⚠️</div>
+                <h3 class="recurso-titulo">Alertas Inteligentes</h3> <!--se por "recusos" aumenta o tamanho-->
+                <p class="recurso-descricao">Receba notificações instantâneas de falhas ou anomalias e tome decisões rápidas para evitar downtime.</p>
+            </div>
+            <div class="recurso-card">
+                <div class="recurso-icon">🌐</div>
+                <h3 class="recurso-titulo">Controle Remoto</h3>
+                <p class="recurso-descricao">Reinicie, atualize ou configure qualquer totem à distância, de maneira rápida e segura.</p>
+            </div>
+            <div class="recurso-card">
+                <div class="recurso-icon">🛎️</div>
+                <h3 class="recurso-titulo">Chamados e Suporte</h3>
+                <p class="recurso-descricao">Registre, acompanhe e gerencie chamados de suporte de cada totem, agilizando soluções e manutenção.</p>
+            </div>
+            <div class="recurso-card">
+                <div class="recurso-icon">🔐</div>
+                <h3 class="recurso-titulo">Segurança Robusta</h3>
+                <p class="recurso-descricao">Proteção completa com criptografia avançada, autenticação forte e logs de auditoria de todos os dispositivos.</p>
+            </div>
+            <div class="recurso-card">
+                <div class="recurso-icon">📊</div>
+                <h3 class="recurso-titulo">Relatórios e Análise</h3>
+                <p class="recurso-descricao">Dashboards detalhados e relatórios estratégicos para avaliar performance, uso e otimizar a operação dos tótens.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROI calculadora (ROI = Retorno sobre Investimento) -->
+    <div class="calculadora-secao" id="calculadora">
+        <div class="calculadora-container">
+            <div class="calculadora-texto">
+                <h2>Calcule seu ROI em Tempo Real</h2>
+                <p>Descubra quanto sua empresa pode economizar com o Nexo. Nossa plataforma reduz em até 87% os custos com manutenção e aumenta o uptime para 99.9%.</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px;">✅ Redução de 87% em visitas técnicas</li>
+                    <li style="margin-bottom: 15px;">✅ Aumento de 45% na vida útil dos equipamentos</li>
+                    <li style="margin-bottom: 15px;">✅ ROI positivo em menos de 3 meses</li>
+                </ul>
+            </div>
+            <div class="calculadora-box">
+                <h3>Calculadora de Economia</h3>
+                <div class="calculadora-input-grupo">
+                    <label>Quantidade de Tótens</label>
+                    <div class="calculadora-input-wrapper">
+                        <input type="number" class="calculadora-input" id="totensInput" value="50" min="1">
+                        <input type="range" class="calc-slider" id="totensSlider" min="1" max="500" value="50">
+                    </div>
+                </div>
+                <div class="calculadora-input-grupo">
+                    <label>Custo Médio por Visita Técnica (R$)</label>
+                    <div class="calculadora-input-wrapper">
+                        <input type="number" class="calculadora-input" id="custoInput" value="350" min="100">
+                    </div>
+                </div>
+                <div class="calc-resultado">
+                    <div class="resultado-item">
+                        <div class="resultado-label">Gasto Atual (Mensal)</div>
+                        <div class="resultado-value resultado-negative" id="gastoAtual">R$ 17.500</div>
+                    </div>
+                    <div class="resultado-item">
+                        <div class="resultado-label">Economia com Nexo</div>
+                        <div class="resultado-value resultado-positive" id="economia">R$ 15.225</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clientes -->
+    <div class="clientes" id="clientes">
+    <div class="clientes-secao">
+        <div class="clientes-label">CLIENTES</div>
+        <h2 class="clientes-title">Empresas que Confiam no Nexo</h2>
+        <p class="clientes-description">
+        Mais de 500 empresas já transformaram sua gestão de tótens com nossa plataforma.
+        </p>
+    </div>
+
+    <!-- Slider -->
+    <div class="swiper clientes-slider">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-mdatotem.webp" alt="Mdatotem" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-daitech-wisetech.png" alt="Daitech" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-aopen.jpg" alt="Aopen" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-futuremedia.png" alt="Futuremedia" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-genialtec.png" alt="Genialtec" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-lg.webp" alt="LG" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-sansung.webp" alt="Samsung" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-locarti.webp" alt="Locarti" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-melhoretec.svg" alt="Melhoretec" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-ncrvoyix.svg" alt="NCR Voyix" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-wtotem.png" alt="Wtotem" class="cliente-logo" id="img_"></div>
+        <div class="swiper-slide"><img src="imgs/Clientes/cliente-logo-videosoft.png" alt="Videosoft" class="cliente-logo" id="img_"></div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- comentarios -->
+    <div class="comentarios" id="comentarios">
+        <div class="comentarios-secao">
+            <div class="section-label">DEPOIMENTOS</div>
+            <h2 class="section-title">O que Nossos Clientes Dizem</h2>
+            <p class="section-description">Histórias reais de transformação e sucesso com o Nexo.</p>
+        </div>
+        <div class="comentarios-containainer">
+            <div class="comentario-card">
+                <div class="comentario-estrela">⭐⭐⭐⭐⭐</div>
+                <p class="comentario-texto">"O Nexo revolucionou nossa operação. Reduzimos em 90% as paradas não programadas e aumentamos nossa receita em 35% no primeiro trimestre."</p>
+                <div class="comentario-autor">
+                    <div class="autor-avatar"></div>
+                    <div class="autor-info">
+                        <div class="autor-nome">Carlos Silva</div>
+                        <div class="autor-cargo">CTO - algum cliente</div>
+                    </div>
+                </div>
+            </div>
+            <div class="comentario-card">
+                <div class="comentario-rating">⭐⭐⭐⭐⭐</div>
+                <p class="comentario-texto">"A previsão de falhas é impressionante. Conseguimos antecipar 95% dos problemas e nossa satisfação do cliente subiu para 98%."</p>
+                <div class="comentario-autor">
+                    <div class="autor-avatar"></div>
+                    <div class="autor-info">
+                        <div class="autor-nome">Ana Costa</div>
+                        <div class="autor-cargo">Diretora de Operações - algum cliente</div>
+                    </div>
+                </div>
+            </div>
+            <div class="comentario-card">
+                <div class="comentario-rating">⭐⭐⭐⭐⭐</div>
+                <p class="comentario-texto">"ROI em apenas 2 meses! O suporte é excepcional e a plataforma é intuitiva. Melhor investimento que fizemos este ano."</p>
+                <div class="comentario-autor">
+                    <div class="autor-avatar"></div>
+                    <div class="autor-info">
+                        <div class="autor-nome">Roberto Lima</div>
+                        <div class="autor-cargo">CEO - algum cliente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contado -->
+    <div class="contado" id="contado">
+        <div class="contado-container">
+            <h2>Pronto para Revolucionar sua Gestão de Tótens?</h2>
+            <p>Junte-se e aumente a sua eficiência em até 300%</p>
+            <div class="botoes">
+                <a href="#" class="botao-principal">Começar Agora</a>
+                <a href="#" class="botao-secundario">Falar com Especialista</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-nexo">
+                <div class="logo"><img id="logo" src="imgs/Nexo-Logo.png" alt="Nexo-Logo"></div>
+                <p>A plataforma mais avançada de monitoramento e gestão de tótens do mercado. Transformando dados em decisões inteligentes desde 2020.</p>
+            </div>
+            <div class="footer-coluna">
+                <h4>Produto</h4>
+                <ul>
+                    <li><a href="#">Recursos</a></li>
+                    <li><a href="#">Integrações</a></li>
+                    <li><a href="#">Preços</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="footer-coluna">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-coluna">
+                <h4>Suporte</h4>
+                <ul>
+                    <li><a href="#">Central de Ajuda</a></li>
+                    <li><a href="#">Documentação</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-final">
+            <p>&copy; 2025 Nexo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+    const clientesSwiper = new Swiper('.clientes-slider', {
+        slidesPerView: 5,
+        spaceBetween: 40,
+        loop: true,
+        allowTouchMove: false,           // só passa sozinho
+        speed: 6000,                     // velocidade do “scroll”
+        autoplay: {
+        delay: 0,                      // contínuo
+        disableOnInteraction: false,
+        },
+        breakpoints: {
+        320:  { slidesPerView: 2, spaceBetween: 20 },
+        768:  { slidesPerView: 3, spaceBetween: 30 },
+        1024: { slidesPerView: 5, spaceBetween: 40 },
+        },
+    });
+</script>
+
+
+</body>
+</html>
