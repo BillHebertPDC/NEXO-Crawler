@@ -3,12 +3,14 @@ import psutil
 import time
 import os
 from datetime import datetime
+from uuid import getnode as get_mac
 
 # --- Configurações do projeto ---
 DURACAO_CAPTURA = 1 * 60  # 30 minutos em segundos
 CAMINHO_PASTA = 'dados_monitoramento'
-NOME_ARQUIVO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
-NOME_ARQUIVO_PROCESSO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}-Processos.csv"
+MAC_ADRESS = get_mac()
+NOME_ARQUIVO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')} - {MAC_ADRESS}.csv"
+NOME_ARQUIVO_PROCESSO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}-Processos {MAC_ADRESS}.csv"
 CAMINHO_ARQUIVO = os.path.join(CAMINHO_PASTA, NOME_ARQUIVO)
 CAMINHO_ARQUIVO_PROCESSO = os.path.join(CAMINHO_PASTA, NOME_ARQUIVO_PROCESSO)
 CAMINHO_LOG = os.path.join(CAMINHO_PASTA, 'log_processamento.csv')
@@ -17,7 +19,7 @@ CAMINHO_CHUNKS = os.path.join(CAMINHO_PASTA, 'chunks_processados.csv')
 # --- Funções de apoio ---
 def coletar_dados_hardware():
     return {
-        'timestamp': datetime.now(),
+        'timestamp': datetime.now().strftime('%Y-%m-%d_%H-%M-%S'),
         'cpu': psutil.cpu_percent(),
         'ram': psutil.virtual_memory().percent,
         'disco': psutil.disk_usage('/').percent
@@ -36,20 +38,20 @@ def coletar_dados_processos():
 
     for proc in psutil.process_iter():
         try:
-            cpu = proc.cpu_percent(interval=None)
-            disco = proc.io_counters().write_bytes / (1024 ** 2)
-            ram = proc.memory_info().rss * 100 / psutil.virtual_memory().total
+            cpu = proc.cpu_percent(interval=None)/ psutil.cpu_count(logical=True)
+            disco = round((proc.io_counters().write_bytes / (1024 ** 2)),1)
+            ram = round((proc.memory_info().rss * 100 / psutil.virtual_memory().total),1)
             if cpu > 0 or ram > 1 or disco > 1:
                 if ram < 1:
                     ram = 0
                 if disco < 1:
                     disco = 0
                 processos_info.append({ 
-                    'timestamp' : datetime.now(),
+                    'timestamp' : datetime.now().strftime('%Y-%m-%d_%H-%M-%S'),
                     'processo' : proc.name(),
-                    'cpu (%)' : cpu,
-                    'ram (%)' : ram,
-                    'dados gravados (MB)' : disco})
+                    'cpu' : cpu,
+                    'ram' : ram,
+                    'dados_gravados' : disco})
         
              
                        
@@ -79,9 +81,10 @@ def redefinir_caminho():
     global CAMINHO_ARQUIVO
     global NOME_ARQUIVO_PROCESSO
     global CAMINHO_ARQUIVO_PROCESSO
-    NOME_ARQUIVO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
+    global MAC_ADRESS
+    NOME_ARQUIVO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')} - {MAC_ADRESS}.csv"
     CAMINHO_ARQUIVO = os.path.join(CAMINHO_PASTA, NOME_ARQUIVO)
-    NOME_ARQUIVO_PROCESSO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}-Processos.csv"
+    NOME_ARQUIVO_PROCESSO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}-Processos {MAC_ADRESS}.csv"
     CAMINHO_ARQUIVO_PROCESSO = os.path.join(CAMINHO_PASTA, NOME_ARQUIVO_PROCESSO)
     return CAMINHO_ARQUIVO,NOME_ARQUIVO, NOME_ARQUIVO_PROCESSO, CAMINHO_ARQUIVO_PROCESSO
 # --- Lógica principal ---
