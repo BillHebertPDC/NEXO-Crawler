@@ -13,8 +13,10 @@ NOME_ARQUIVO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')} - {MAC_ADRESS}.c
 NOME_ARQUIVO_PROCESSO = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}-Processos {MAC_ADRESS}.csv"
 CAMINHO_ARQUIVO = os.path.join(CAMINHO_PASTA, NOME_ARQUIVO)
 CAMINHO_ARQUIVO_PROCESSO = os.path.join(CAMINHO_PASTA, NOME_ARQUIVO_PROCESSO)
-CAMINHO_LOG = os.path.join(CAMINHO_PASTA, 'log_processamento.csv')
-CAMINHO_CHUNKS = os.path.join(CAMINHO_PASTA, 'chunks_processados.csv')
+NOME_LOG = f"log_processamento_{MAC_ADRESS}.csv"
+CAMINHO_LOG = os.path.join(CAMINHO_PASTA, NOME_LOG)
+NOME_CHUNK = f"chunks_processados_{MAC_ADRESS}.csv"
+CAMINHO_CHUNKS = os.path.join(CAMINHO_PASTA, NOME_CHUNK)
 
 # --- Funções de apoio ---
 def coletar_dados_hardware():
@@ -22,7 +24,8 @@ def coletar_dados_hardware():
         'timestamp': datetime.now().strftime('%Y-%m-%d_%H-%M-%S'),
         'cpu': psutil.cpu_percent(),
         'ram': psutil.virtual_memory().percent,
-        'disco': psutil.disk_usage('/').percent
+        'disco': psutil.disk_usage('/').percent,
+        'mac' : MAC_ADRESS
     }
 def coletar_dados_processos():
     processos_info = []
@@ -38,7 +41,7 @@ def coletar_dados_processos():
 
     for proc in psutil.process_iter():
         try:
-            cpu = proc.cpu_percent(interval=None)/ psutil.cpu_count(logical=True)
+            cpu = round(proc.cpu_percent(interval=None)/ psutil.cpu_count(logical=True),1)
             disco = round((proc.io_counters().write_bytes / (1024 ** 2)),1)
             ram = round((proc.memory_info().rss * 100 / psutil.virtual_memory().total),1)
             if cpu > 0 or ram > 1 or disco > 1:
@@ -51,7 +54,8 @@ def coletar_dados_processos():
                     'processo' : proc.name(),
                     'cpu' : cpu,
                     'ram' : ram,
-                    'dados_gravados' : disco})
+                    'dados_gravados' : disco,
+                    'mac' : MAC_ADRESS})
         
              
                        
@@ -67,7 +71,8 @@ def salvar_arquivo(dataFrame,CAMINHO):
 def registrar_log(mensagem):
     log_data = pd.DataFrame([{
         'timestamp': datetime.now(),
-        'evento': mensagem
+        'evento': mensagem,
+        'mac' : MAC_ADRESS
     }])
     salvar_arquivo(log_data,CAMINHO_LOG)
 def adicionar_a_chunks(nome_arquivo):
